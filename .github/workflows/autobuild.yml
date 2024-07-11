@@ -41,7 +41,7 @@ jobs:
           
       - name: Building OpenWrt
         run: |
-          sudo ./ulo -k ${{ matrix.kernel }} -m ${{ matrix.devices }} -s 512
+          sudo ./ulo -k ${{ matrix.kernel }} -m ${{ matrix.devices }} -s 1024
           
       - name: Creating Package Artifact
         run: |
@@ -62,7 +62,7 @@ jobs:
           tag: ${{ github.ref }}
           file_glob: true
           body: |
-            ## OpenWRT Release
+            ## OpenWRT AT01/AX810 Release
             Kernel :
             - 4.9.337
             - 5.4.279
