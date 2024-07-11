@@ -64,8 +64,8 @@ jobs:
           body: |
             ## OpenWRT AT01/AX810 Release
             Kernel :
-            - 4.9.337
-            - 5.4.279
-            - 6.6.6
-            - 6.1.66
+            - 4.9.337 | Wifi Off
+            - 5.4.279 | Wifi On
+            - 6.6.6 | Wifi Off
+            - 6.1.66 | Wifi Off
          
