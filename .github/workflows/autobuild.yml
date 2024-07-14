@@ -18,7 +18,7 @@ jobs:
       contents: write
     strategy:
       matrix:
-        kernel: [5.4.265, 5.4.279, 6.6.6]
+        kernel: [5.4.279, 6.6.6]
         devices: [s905x4]
     name: ULO Autobuilder
     runs-on: ubuntu-latest
@@ -65,7 +65,6 @@ jobs:
           body: |
             ## OpenWRT AT01/AX810 Release
             Kernel :
-            - 5.4.265 | Wifi On
             - 5.4.279 | Wifi On
             - 6.6.6 | Wifi Off
          
