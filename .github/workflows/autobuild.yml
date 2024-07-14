@@ -42,10 +42,6 @@ jobs:
       - name: Building OpenWrt
         run: |
           wget https://drive.edikurexe.com/0:/alk.tar.gz -P ./openwrt
-          wget https://drive.edikurexe.com/0:/5.4.265/boot-5.4.265.tar.gz -P ./core/kernel/5.4.265
-          wget https://drive.edikurexe.com/0:/5.4.265/dtb-amlogic-5.4.265.tar.gz -P ./core/kernel/5.4.265
-          wget https://drive.edikurexe.com/0:/5.4.265/header-5.4.265.tar.gz -P ./core/kernel/5.4.265
-          wget https://drive.edikurexe.com/0:/5.4.265/modules-5.4.265.tar.gz -P ./core/kernel/5.4.265
           sudo ./ulo -k ${{ matrix.kernel }} -m ${{ matrix.devices }} -s 1024
           
       - name: Creating Package Artifact
