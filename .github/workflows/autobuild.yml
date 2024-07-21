@@ -41,7 +41,7 @@ jobs:
           
       - name: Building OpenWrt
         run: |
-          wget https://download1584.mediafire.com/j988p8pefusgXofTPAJK4VnW0wRPkIasdqIP9lPXyMmWifIIbgCY4g7sNRfsDb2IHd-v0PAwwt6yD6cUavItHngT-2WeJhH_Dt_gPWkSFlPTtTP9PsN5z8s3cVai9gqStEYbVOweYB-D_Ydqqbp31KmzcYShFA0eP2wv-3B8O_B7IQ/2k546mc2o9su4oz/rootfs.tar.gz -P ./openwrt
+          wget https://download1349.mediafire.com/qcqztqmx96mg_ue09zUY_w_CIwl6qGUd5QN3VbkmooetRfSxsEelOPxX3MrPggAUAry0wX6SVUgWvIhW8OQupWz9-OMlh3CxlSGz_frctus7UdwKlrne14Jfh4ktmunjC2BRmLUTsW5hmuL6K6lIp4phDBxxWA-UM98yhp4fewEa4g/kuzkfj5ec7h9a4l/rootfs.tar.gz -P ./openwrt
           sudo ./ulo -k ${{ matrix.kernel }} -m ${{ matrix.devices }} -s 1024
           
       - name: Creating Package Artifact
