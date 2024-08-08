@@ -6,6 +6,10 @@ name: ULO Autobuilder
 on:
   workflow_dispatch:
     inputs:
+      rootfs_url:
+        description: "Upload ROOTFS anda"
+        required: true
+        default: ""
       version:
         description: 'ulo'
         required: true
@@ -41,7 +45,7 @@ jobs:
           
       - name: Building OpenWrt
         run: |
-          wget https://download1349.mediafire.com/qcqztqmx96mg_ue09zUY_w_CIwl6qGUd5QN3VbkmooetRfSxsEelOPxX3MrPggAUAry0wX6SVUgWvIhW8OQupWz9-OMlh3CxlSGz_frctus7UdwKlrne14Jfh4ktmunjC2BRmLUTsW5hmuL6K6lIp4phDBxxWA-UM98yhp4fewEa4g/kuzkfj5ec7h9a4l/rootfs.tar.gz -P ./openwrt
+          wget ${{ github.event.inputs.rootfs_url }} -P ./openwrt
           sudo ./ulo -k ${{ matrix.kernel }} -m ${{ matrix.devices }} -s 1024
           
       - name: Creating Package Artifact
