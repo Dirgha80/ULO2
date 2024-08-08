@@ -46,7 +46,7 @@ jobs:
       - name: Building OpenWrt
         run: |
           wget ${{ github.event.inputs.rootfs_url }} -P ./openwrt
-          sudo ./ulo -k ${{ matrix.kernel }} -m ${{ matrix.devices }} -s 1024
+          sudo ./${{ inputs.version }} -k ${{ matrix.kernel }} -m ${{ matrix.devices }} -s 1024
           
       - name: Creating Package Artifact
         run: |
