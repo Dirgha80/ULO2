@@ -42,10 +42,31 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
-          
+
+      - name: Download ROOTFS via link
+        run: |
+          if [ $(echo ${{ inputs.rootfs_url }} | grep "drive.") ]; then
+            if [ $(echo ${{ inputs.rootfs_url }} | awk -F "/" '{print $6}') ]; then
+              link_gdrive=$(echo ${{ inputs.rootfs_url }} | awk -F "/" '{print $6}')
+            else
+              link_gdrive=$(echo ${{ inputs.rootfs_url }} | awk -F "/" '{print $4}' | awk -F "?id=" '{print $2}'|awk -F "&export" '{print $1}')
+            fi
+          sudo gdown ${link_gdrive} -O ./rootfs/rootfs.tar.gz
+          else
+            if [ $(echo ${{ inputs.rootfs_url }} | grep "mediafire.com") ]; then
+             sudo mediafire-dl ${{ inputs.rootfs_url }} ./rootfs
+             else
+              if [ $(echo ${{ inputs.rootfs_url }} | grep "mega.nz") ]; then
+                file_mega=$(sudo mega-get ${{ inputs.rootfs_url }} | awk -F: '{print $2}')
+               sudo mv ${file_mega} ./rootfs
+              else
+                sudo wget -q --no-check-certificate ${{ inputs.rootfs_url }} -P ./rootfs
+              fi
+            fi
+          fi
+        
       - name: Building OpenWrt
         run: |
-          wget ${{ github.event.inputs.rootfs_url }} -P ./openwrt
           sudo ./${{ inputs.version }} -k ${{ matrix.kernel }} -m ${{ matrix.devices }} -s 1024
           
       - name: Creating Package Artifact
@@ -69,6 +90,7 @@ jobs:
           body: |
             ## OpenWRT AT01/AX810 Release
             Kernel :
+            - 5.4.125 | Wifi On - Unisoc
             - 5.4.279 | Wifi On - Realtek
             - 5.4.265 | Wifi On - Unisoc
          
