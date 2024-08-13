@@ -6,6 +6,18 @@ name: ULO Autobuilder
 on:
   workflow_dispatch:
     inputs:
+      type_file:
+        description: "Select type file"
+        required: false
+        default: "img.gz"
+        type: choice
+        options:
+          - img.xz
+          - img.gz
+      img_url:
+        description: "Set the url img file"
+        required: true
+        default: ""
       kernel:
         description: 'Kernel Version (ex. 6.6.6, 6.1.31-localversion)'
         required: true
@@ -74,7 +86,7 @@ jobs:
           sudo pip3 install gdown
           sudo pip3 install git+https://github.com/Juvenal-Yescas/mediafire-dl
           wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_20.04_amd64.deb && sudo apt install "$PWD/megacmd-xUbuntu_20.04_amd64.deb"
-                    
+          sudo -E apt-get -y install --reinstall build-essential          
       - name: Checkout Repository
         uses: actions/checkout@v2
         with:
