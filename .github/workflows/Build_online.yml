@@ -122,7 +122,7 @@ jobs:
              (cd rootfs && sudo tar cfz /home/runner/work/ULO2/ULO2/rootfs/${{ inputs.rename_rootfs }}.tar.gz *)
       - name: Building OpenWrt
         run: |
-          sudo ./ulo -k ${{ inputs.kernel }} -m ${{ inputs.devices }} -r ${{ inputs.rootfs }} -s ${{ inputs.rootfs_size }}
+          sudo ./ulo -m ${{ inputs.devices }} -k ${{ inputs.kernel }} -s ${{ inputs.rootfs_size }}
           
       - name: Creating Package Artifact
         run: |
