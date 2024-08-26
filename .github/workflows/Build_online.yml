@@ -61,7 +61,8 @@ on:
         required: false
         default: ""     
         type: string 
-        
+env:
+  TZ: Asia/Jakarta    
 jobs: 
   build_ipk:
     permissions:
@@ -82,6 +83,7 @@ jobs:
           sudo -E apt-get clean
           sudo -E apt-get -y install wget python3
           sudo pip3 install gdown
+          sudo timedatectl set-timezone "$TZ"
           sudo pip3 install git+https://github.com/Juvenal-Yescas/mediafire-dl
           wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_20.04_amd64.deb && sudo apt install "$PWD/megacmd-xUbuntu_20.04_amd64.deb"
                     
