@@ -1,7 +1,7 @@
 #
 # Copyright (C) 2024 nosignals
 #
-name: ULO Autobuilder
+name: ULO rootfs
 
 on:
   workflow_dispatch:
@@ -58,7 +58,7 @@ jobs:
   build_ipk:
     permissions:
       contents: write
-    name: ULO Autobuilder
+    name: ULO rootfs
     runs-on: ubuntu-20.04
     steps:
       
