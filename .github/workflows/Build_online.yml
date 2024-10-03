@@ -98,23 +98,23 @@ jobs:
            else
             link_gdrive=$(echo ${{ github.event.inputs.img_url }} | awk -F "/" '{print $4}' | awk -F "?id=" '{print $2}'|awk -F "&export" '{print $1}')
            fi
-           sudo gdown ${link_gdrive} -O $build/file.${{ github.event.inputs.type_file }}
+           sudo gdown ${link_gdrive} -O build/file.${{ github.event.inputs.type_file }}
            else
            if [ $(echo ${{ github.event.inputs.img_url }} | grep "mediafire.com") ]; then
-            sudo mediafire-dl ${{ github.event.inputs.img_url }} -o $build/file.${{ github.event.inputs.type_file }}
+            sudo mediafire-dl ${{ github.event.inputs.img_url }} -o build/file.${{ github.event.inputs.type_file }}
             else
             if [ $(echo ${{ github.event.inputs.img_url }} | grep "mega.nz") ]; then
               file_mega=$(sudo mega-get ${{ github.event.inputs.img_url }} | awk -F: '{print $2}')
-              sudo mv ${file_mega} $build/file.${{ github.event.inputs.type_file }}
+              sudo mv ${file_mega} build/file.${{ github.event.inputs.type_file }}
             else
-              sudo wget --no-check-certificate ${{ github.event.inputs.img_url }} -O $build/file.${{ github.event.inputs.type_file }}
+              sudo wget --no-check-certificate ${{ github.event.inputs.img_url }} -O build/file.${{ github.event.inputs.type_file }}
             fi
            fi
            fi
       - name: Extract firmware
         id: extract
         run: |  
-             cd $build
+             cd build
              sudo mkdir -p boot rootfs img
              if [ ${{ github.event.inputs.type_file }} = "img.gz" ]; then
              sudo gunzip file.img.gz
