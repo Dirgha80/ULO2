@@ -20,6 +20,7 @@ device_path="./device"
 kernel_path="./core/kernel"
 rootfs_path="./rootfs"
 fwdriver_path="./core/root/lib"
+build="./build"
 
 # Kernel & Firmware Repository
 repos="https://github.com/Houjie80/ULO-repository"
