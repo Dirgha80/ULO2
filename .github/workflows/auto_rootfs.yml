@@ -39,6 +39,10 @@ on:
         description: "Upload ROOTFS via link (MEGA,mediafire,GDrive)"
         required: false
         default: ""
+      versi:
+        description: "Pilih ULO / ULO2"
+        required: true
+        default: "ulo"   
       rootfs_size:
         description: "ROOTFS Size, min 640 (756, 1024, 2048, etc)"
         required: true
@@ -102,7 +106,7 @@ jobs:
         run: |
           sudo chmod +x ulo2
           sudo chmod +x ulo
-          sudo ./ulo -m ${{ inputs.devices }} -k ${{ inputs.kernel }} -s ${{ inputs.rootfs_size }}
+          sudo ./${{ inputs.versi }} -m ${{ inputs.devices }} -k ${{ inputs.kernel }} -s ${{ inputs.rootfs_size }}
           
       - name: Creating Package Artifact
         run: |
