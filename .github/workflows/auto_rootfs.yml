@@ -39,11 +39,6 @@ on:
         description: "Upload ROOTFS via link (MEGA,mediafire,GDrive)"
         required: false
         default: ""
-      rootfs:
-        description: 'ROOTFS File (ex. ImmortalWrt-21-02-7-rootfs.tar.gz)'
-        required: true
-        default: 'ImmortalWrt-21-02-7-rootfs.tar.gz'
-        type: string
       rootfs_size:
         description: "ROOTFS Size, min 640 (756, 1024, 2048, etc)"
         required: true
@@ -73,12 +68,12 @@ jobs:
           sudo -E apt-get clean
           sudo pip3 install gdown
           sudo pip3 install git+https://github.com/Juvenal-Yescas/mediafire-dl
-          wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_20.04_amd64.deb && sudo apt install "$PWD/megacmd-xUbuntu_20.04_amd64.deb"
+          # wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_20.04_amd64.deb && sudo apt install "$PWD/megacmd-xUbuntu_20.04_amd64.deb"
                     
       - name: Checkout Repository
         uses: actions/checkout@v2
         with:
-          ref: main
+          ref: p
 
       - name: Download ROOTFS via link
         run: |
@@ -113,7 +108,7 @@ jobs:
           cp -rf ./out/${{ inputs.devices }}/* ./artifact/
           
       - name: Delivering Package
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: openwrt_package
           path: ./artifact/*
